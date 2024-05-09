@@ -1,9 +1,11 @@
 #include <iostream>
+#include <memory>
 #include <SFML/Graphics.hpp>
+
+#include "framework/Application.h"
 
 int main()
 {
-	sf::RenderWindow renderWindow{ sf::VideoMode(100,100), "MyWindow" };
-	
-	std::cout << "Hello World!" << std::endl;
+	std::unique_ptr<ph::Application> app = std::make_unique<ph::Application>();
+	app->Run();
 }
