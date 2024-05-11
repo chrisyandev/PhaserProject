@@ -22,8 +22,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(${SFML_LIB_NAME})
 
-#set(PHASER_ENGINE_TARGET_NAME PhaserEngine)
+set(PHASER_ENGINE_TARGET_NAME PhaserEngine)
 set(PHASER_GAME_TARGET_NAME PhaserGame)
 
-#add_subdirectory(PhaserEngine)
+add_subdirectory(PhaserEngine)
 add_subdirectory(PhaserGame)

@@ -1,27 +1,22 @@
 add_executable(
 	${PHASER_GAME_TARGET_NAME}
-	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Application.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/GameFramework/GameApplication.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GameFramework/GameApplication.cpp
 )
 
 target_include_directories(
 	${PHASER_GAME_TARGET_NAME} PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/Include
 )
 
-target_link_libraries(${PHASER_GAME_TARGET_NAME} PUBLIC sfml-graphics)
-target_link_libraries(${PHASER_GAME_TARGET_NAME} PUBLIC sfml-window)
-target_link_libraries(${PHASER_GAME_TARGET_NAME} PUBLIC sfml-system)
-target_link_libraries(${PHASER_GAME_TARGET_NAME} PUBLIC sfml-audio)
+target_link_libraries(${PHASER_GAME_TARGET_NAME} PUBLIC ${PHASER_ENGINE_TARGET_NAME})
 
-function(CopyLibToTarget LIB_NAME TARGET_NAME)
+function(CopyLibDirToTarget LIB_DIR_NAME TARGET_NAME)
 	add_custom_command (
 		TARGET ${TARGET_NAME} POST_BUILD
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:${LIB_NAME}> $<TARGET_FILE_DIR:${TARGET_NAME}>
+		COMMAND ${CMAKE_COMMAND} -E copy_directory $<TARGET_FILE_DIR:${LIB_DIR_NAME}> $<TARGET_FILE_DIR:${TARGET_NAME}>
 	)
 endfunction()
-CopyLibToTarget(sfml-graphics ${PHASER_GAME_TARGET_NAME})
-CopyLibToTarget(sfml-window ${PHASER_GAME_TARGET_NAME})
-CopyLibToTarget(sfml-system ${PHASER_GAME_TARGET_NAME})
-CopyLibToTarget(sfml-audio ${PHASER_GAME_TARGET_NAME})
+
+CopyLibDirToTarget(${PHASER_ENGINE_TARGET_NAME} ${PHASER_GAME_TARGET_NAME})
