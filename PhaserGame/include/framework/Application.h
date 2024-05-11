@@ -7,9 +7,13 @@ namespace ph
 	{
 	public:
 		Application();
-		void Run();
+		void run();
 
 	private:
+		void tick(float deltaTime);
+		void render();
 		sf::RenderWindow m_window;
+		float m_targetFrameRate;
+		sf::Clock m_tickClock;
 	};
 }
