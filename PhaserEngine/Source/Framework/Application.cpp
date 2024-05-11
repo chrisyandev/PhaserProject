@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Framework/Application.h"
+#include "Framework/Core.h"
 
 namespace ph
 {
@@ -61,6 +61,6 @@ namespace ph
 
 	void Application::tick(float deltaTime)
 	{
-		std::cout << 1.f / deltaTime << std::endl;
+		LOG("%f", 1.f / deltaTime);
 	}
 }

@@ -1,11 +1,14 @@
 add_library(
 	${PHASER_ENGINE_TARGET_NAME} STATIC
 
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/EntryPoint.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/EntryPoint.cpp
+
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/Application.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/Application.cpp
 
-	${CMAKE_CURRENT_SOURCE_DIR}/Include/EntryPoint.h
-	${CMAKE_CURRENT_SOURCE_DIR}/Source/EntryPoint.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/Core.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/Core.cpp
 )
 
 target_include_directories(
