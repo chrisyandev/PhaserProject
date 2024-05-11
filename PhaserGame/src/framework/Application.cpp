@@ -25,24 +25,42 @@ namespace ph
 					m_window.close();
 				}
 			}
-
-			accumulatedTime += m_tickClock.restart().asSeconds();
+			float frameDeltaTime = m_tickClock.restart().asSeconds();
+			accumulatedTime += frameDeltaTime;
 			while (accumulatedTime > targetDeltaTime)
 			{
 				accumulatedTime -= targetDeltaTime;
-				tick(targetDeltaTime);
-				render();
+				tickInternal(targetDeltaTime);
+				renderInternal();
 			}
 		}
+	}
+
+	void Application::tickInternal(float deltaTime)
+	{
+		tick(deltaTime);
+	}
+
+	void Application::renderInternal()
+	{
+		m_window.clear();
+
+		render();
+
+		m_window.display();
+	}
+
+	void Application::render()
+	{
+		sf::RectangleShape rect{ sf::Vector2f(100,100) };
+		rect.setFillColor(sf::Color::Green);
+		rect.setOrigin(50, 50);
+		rect.setPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
+		m_window.draw(rect);
 	}
 
 	void Application::tick(float deltaTime)
 	{
 		std::cout << 1.f / deltaTime << std::endl;
-	}
-
-	void Application::render()
-	{
-
 	}
 }

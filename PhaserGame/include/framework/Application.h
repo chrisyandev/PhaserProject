@@ -10,8 +10,12 @@ namespace ph
 		void run();
 
 	private:
-		void tick(float deltaTime);
-		void render();
+		void tickInternal(float deltaTime);
+		virtual void tick(float deltaTime);
+		
+		void renderInternal();
+		virtual void render();
+
 		sf::RenderWindow m_window;
 		float m_targetFrameRate;
 		sf::Clock m_tickClock;
