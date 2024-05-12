@@ -11,6 +11,7 @@ namespace ph
 
 	Actor::~Actor()
 	{
+		LOG("Actor Destroyed");
 	}
 
 	void Actor::beginPlayInternal()

@@ -34,10 +34,18 @@ namespace ph
 		}
 
 		m_pendingActors.clear();
-		
-		for (TSharedPtr<Actor> actor : m_actors)
+
+		for (auto it = m_actors.begin(); it != m_actors.end();)
 		{
-			actor->tick(deltaTime);
+			if (it->get()->isPendingDestroy())
+			{
+				it = m_actors.erase(it);
+			}
+			else
+			{
+				it->get()->tick(deltaTime);
+				++it;
+			}
 		}
 
 		tick(deltaTime);
