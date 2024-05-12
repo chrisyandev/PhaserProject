@@ -1,12 +1,14 @@
 #include "Framework/Application.h"
 #include "Framework/Core.h"
+#include "Framework/World.h"
 
 namespace ph
 {
 	Application::Application()
 		: m_window{ sf::VideoMode(600, 980), "Phaser" },
 		m_targetFrameRate{ 60.f },
-		m_tickClock{}
+		m_tickClock{},
+		currentWorld(nullptr)
 	{
 	}
 
@@ -39,6 +41,12 @@ namespace ph
 	void Application::tickInternal(float deltaTime)
 	{
 		tick(deltaTime);
+		
+		if (currentWorld)
+		{
+			currentWorld->beginPlayInternal();
+			currentWorld->tickInternal(deltaTime);
+		}
 	}
 
 	void Application::renderInternal()
@@ -61,6 +69,5 @@ namespace ph
 
 	void Application::tick(float deltaTime)
 	{
-		LOG("%f", 1.f / deltaTime);
 	}
 }

@@ -5,6 +5,7 @@ namespace ph
 {
 	class GameApplication : public Application
 	{
-
+	public:
+		GameApplication();
 	};
 }

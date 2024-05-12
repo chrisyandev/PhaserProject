@@ -9,6 +9,9 @@ add_library(
 
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/Core.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/Core.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/World.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/World.cpp
 )
 
 target_include_directories(

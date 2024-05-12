@@ -1,4 +1,5 @@
 #include "GameFramework/GameApplication.h"
+#include "Framework/World.h"
 
 ph::Application* GetApplication()
 {
@@ -7,5 +8,8 @@ ph::Application* GetApplication()
 
 namespace ph
 {
-
+	GameApplication::GameApplication()
+	{
+		LoadWorld<World>();
+	}
 }
