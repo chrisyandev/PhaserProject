@@ -13,7 +13,7 @@ namespace ph
 		void run();
 		
 		template<typename WorldType>
-		TWeakPtr<WorldType> LoadWorld()
+		TWeakPtr<WorldType> loadWorld()
 		{
 			TSharedPtr<WorldType> newWorld{ new WorldType{this} };
 			currentWorld = newWorld;

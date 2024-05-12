@@ -12,6 +12,9 @@ add_library(
 
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/World.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/World.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/Actor.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/Actor.cpp
 )
 
 target_include_directories(

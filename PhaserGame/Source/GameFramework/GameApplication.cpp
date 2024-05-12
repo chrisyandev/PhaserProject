@@ -1,5 +1,6 @@
 #include "GameFramework/GameApplication.h"
 #include "Framework/World.h"
+#include "Framework/Actor.h"
 
 ph::Application* GetApplication()
 {
@@ -10,6 +11,9 @@ namespace ph
 {
 	GameApplication::GameApplication()
 	{
-		LoadWorld<World>();
+		TWeakPtr<World> newWorld = loadWorld<World>();
+		newWorld.lock()->SpawnActor<Actor>();
+		newWorld.lock()->SpawnActor<Actor>();
+		newWorld.lock()->SpawnActor<Actor>();
 	}
 }

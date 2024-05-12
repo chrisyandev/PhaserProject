@@ -1,13 +1,15 @@
 #include "Framework/World.h"
 #include "Framework/Core.h"
+#include "Framework/Actor.h"
 
 namespace ph
 {
 	World::World(Application* owningApp)
 		: m_owningApp{ owningApp },
-		m_bBegunPlay(false)
+		m_bBegunPlay(false),
+		m_actors{},
+		m_pendingActors{}
 	{
-
 	}
 
 	World::~World()
@@ -25,6 +27,19 @@ namespace ph
 
 	void World::tickInternal(float deltaTime)
 	{
+		for (TSharedPtr<Actor> actor : m_pendingActors)
+		{
+			m_actors.push_back(actor);
+			actor->beginPlayInternal();
+		}
+
+		m_pendingActors.clear();
+		
+		for (TSharedPtr<Actor> actor : m_actors)
+		{
+			actor->tick(deltaTime);
+		}
+
 		tick(deltaTime);
 	}
 
