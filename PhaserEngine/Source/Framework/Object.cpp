@@ -3,18 +3,18 @@
 
 namespace ph
 {
-	Object::Object()
-		: m_bPendingDestroy{ false }
-	{
-	}
+    Object::Object()
+        : m_bPendingDestroy{ false }
+    {
+    }
 
-	Object::~Object()
-	{
-		LOG("Object Destroyed");
-	}
+    Object::~Object()
+    {
+        LOG("Object Destroyed");
+    }
 
-	void Object::destroy()
-	{
-		m_bPendingDestroy = true;
-	}
+    void Object::destroy()
+    {
+        m_bPendingDestroy = true;
+    }
 }

@@ -3,7 +3,7 @@
 
 int main()
 {
-	ph::Application* app = GetApplication();
-	app->run();
-	delete app;
+    ph::Application* app = GetApplication();
+    app->run();
+    delete app;
 }

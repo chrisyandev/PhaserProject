@@ -2,7 +2,7 @@
 
 namespace ph
 {
-	class Application;
+    class Application;
 }
 
 extern ph::Application* GetApplication();
