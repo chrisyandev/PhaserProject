@@ -10,10 +10,13 @@ ph::Application* GetApplication()
 namespace ph
 {
 	GameApplication::GameApplication()
+		: Application{ 980, 600, "Phaser", sf::Style::Titlebar | sf::Style::Close }
 	{
 		TWeakPtr<World> newWorld = loadWorld<World>();
 		newWorld.lock()->SpawnActor<Actor>();
 		m_actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
+		m_actorToDestroy.lock()->setTexture(
+			"D:/CPP_Projects/PhaserProject/PhaserGame/Assets/PNG/playerShip2_orange.png");
 		m_counter = 0;
 	}
 

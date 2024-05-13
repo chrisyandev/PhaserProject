@@ -9,9 +9,12 @@ namespace ph
 	class Application
 	{
 	public:
-		Application();
+		Application(unsigned int windowWidth,
+			        unsigned int windowHeight,
+			        const std::string& title,
+			        sf::Uint32 style);
 		void run();
-		
+
 		template<typename WorldType>
 		TWeakPtr<WorldType> loadWorld()
 		{

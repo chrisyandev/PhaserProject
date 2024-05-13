@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "Framework/Core.h"
 
 namespace ph
@@ -13,6 +14,7 @@ namespace ph
 		virtual ~World();
 		void beginPlayInternal();
 		void tickInternal(float deltaTime);
+		void render(sf::RenderWindow& window);
 
 		template<typename ActorType>
 		TWeakPtr<ActorType> SpawnActor()

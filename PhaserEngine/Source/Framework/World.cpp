@@ -5,10 +5,10 @@
 namespace ph
 {
 	World::World(Application* owningApp)
-		: m_owningApp{ owningApp },
-		m_bBegunPlay(false),
-		m_actors{},
-		m_pendingActors{}
+		: m_owningApp{ owningApp }
+		, m_bBegunPlay(false)
+		, m_actors{}
+		, m_pendingActors{}
 	{
 	}
 
@@ -43,12 +43,20 @@ namespace ph
 			}
 			else
 			{
-				it->get()->tick(deltaTime);
+				it->get()->tickInternal(deltaTime);
 				++it;
 			}
 		}
 
 		tick(deltaTime);
+	}
+
+	void World::render(sf::RenderWindow& window)
+	{
+		for (auto& actor : m_actors)
+		{
+			actor->render(window);
+		}
 	}
 
 	void World::beginPlay()

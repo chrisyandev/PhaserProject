@@ -4,11 +4,14 @@
 
 namespace ph
 {
-	Application::Application()
-		: m_window{ sf::VideoMode(600, 980), "Phaser" },
-		m_targetFrameRate{ 60.f },
-		m_tickClock{},
-		currentWorld(nullptr)
+	Application::Application(unsigned int windowWidth,
+		                     unsigned int windowHeight,
+		                     const std::string& title,
+		                     sf::Uint32 style)
+		: m_window{ sf::VideoMode(windowWidth, windowHeight), title, style }
+		, m_targetFrameRate{ 60.f }
+		, m_tickClock{}
+		, currentWorld{ nullptr }
 	{
 	}
 
@@ -41,7 +44,7 @@ namespace ph
 	void Application::tickInternal(float deltaTime)
 	{
 		tick(deltaTime);
-		
+
 		if (currentWorld)
 		{
 			currentWorld->beginPlayInternal();
@@ -60,11 +63,10 @@ namespace ph
 
 	void Application::render()
 	{
-		sf::RectangleShape rect{ sf::Vector2f(100,100) };
-		rect.setFillColor(sf::Color::Green);
-		rect.setOrigin(50, 50);
-		rect.setPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
-		m_window.draw(rect);
+		if (currentWorld)
+		{
+			currentWorld->render(m_window);
+		}
 	}
 
 	void Application::tick(float deltaTime)
