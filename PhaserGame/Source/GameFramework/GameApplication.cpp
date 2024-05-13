@@ -16,7 +16,7 @@ namespace ph
 		newWorld.lock()->SpawnActor<Actor>();
 		m_actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
 		m_actorToDestroy.lock()->setTexture(
-			"D:/CPP_Projects/PhaserProject/PhaserGame/Assets/PNG/playerShip2_orange.png");
+			"D:/CPP_Projects/ProjectPhaser/PhaserGame/Assets/PNG/playerShip2_orange.png");
 		m_counter = 0;
 	}
 

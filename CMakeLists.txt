@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 
 project(
-	PhaserProject
+	ProjectPhaser
 	VERSION 1.0.0
 	LANGUAGES C CXX
 )
