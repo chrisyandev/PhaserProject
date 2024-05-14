@@ -1,6 +1,7 @@
 #include "GameFramework/GameApplication.h"
 #include "Framework/World.h"
 #include "Framework/Actor.h"
+#include "Config.h"
 
 ph::Application* GetApplication()
 {
@@ -13,10 +14,9 @@ namespace ph
         : Application{ 980, 600, "Phaser", sf::Style::Titlebar | sf::Style::Close }
     {
         TWeakPtr<World> newWorld = loadWorld<World>();
-        newWorld.lock()->SpawnActor<Actor>();
-        m_actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
-        m_actorToDestroy.lock()->setTexture(
-            "D:/CPP_Projects/ProjectPhaser/PhaserGame/Assets/PNG/playerShip2_orange.png");
+        newWorld.lock()->spawnActor<Actor>();
+        m_actorToDestroy = newWorld.lock()->spawnActor<Actor>();
+        m_actorToDestroy.lock()->setTexture(GetResourceDir() + "PNG/playerShip2_orange.png");
         m_counter = 0;
     }
 

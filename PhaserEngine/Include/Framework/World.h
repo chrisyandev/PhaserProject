@@ -17,7 +17,7 @@ namespace ph
         void render(sf::RenderWindow& window);
 
         template<typename ActorType>
-        TWeakPtr<ActorType> SpawnActor()
+        TWeakPtr<ActorType> spawnActor()
         {
             TSharedPtr<ActorType> newActor{ new ActorType{this} };
             m_pendingActors.push_back(newActor);
