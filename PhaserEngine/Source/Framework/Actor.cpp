@@ -1,5 +1,6 @@
 #include "Framework/Actor.h"
 #include "Framework/Core.h"
+#include "Framework/AssetManager.h"
 
 namespace ph
 {
@@ -46,12 +47,18 @@ namespace ph
 
     void Actor::setTexture(const std::string& texturePath)
     {
-        m_texture.loadFromFile(texturePath);
-        m_sprite.setTexture(m_texture);
+        m_texture = AssetManager::get().loadTexture(texturePath);
+
+        if (!m_texture)
+        {
+            return;
+        }
+
+        m_sprite.setTexture(*m_texture);
         m_sprite.setTextureRect(
             sf::IntRect{
                 sf::Vector2i{},
-                sf::Vector2i{ (int)m_texture.getSize().x, (int)m_texture.getSize().y }
+                sf::Vector2i{ (int)m_texture->getSize().x, (int)m_texture->getSize().y }
             });
     }
 

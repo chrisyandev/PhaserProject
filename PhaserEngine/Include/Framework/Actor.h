@@ -23,6 +23,6 @@ namespace ph
         World* m_owningWorld;
         bool m_bBegunPlay;
         sf::Sprite m_sprite;
-        sf::Texture m_texture;
+        TSharedPtr<sf::Texture> m_texture;
     };
 }
