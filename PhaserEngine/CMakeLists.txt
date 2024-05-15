@@ -10,6 +10,9 @@ add_library(
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/Core.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/Core.cpp
 
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/MathUtility.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/MathUtility.cpp
+
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/AssetManager.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/AssetManager.cpp
 
