@@ -35,16 +35,16 @@ namespace ph
 
         m_pendingActors.clear();
 
-        for (auto it = m_actors.begin(); it != m_actors.end();)
+        for (auto itr = m_actors.begin(); itr != m_actors.end();)
         {
-            if (it->get()->isPendingDestroy())
+            if (itr->get()->isPendingDestroy())
             {
-                it = m_actors.erase(it);
+                itr = m_actors.erase(itr);
             }
             else
             {
-                it->get()->tickInternal(deltaTime);
-                ++it;
+                itr->get()->tickInternal(deltaTime);
+                ++itr;
             }
         }
 
@@ -61,11 +61,9 @@ namespace ph
 
     void World::beginPlay()
     {
-        LOG("Begin Play");
     }
 
     void World::tick(float deltaTime)
     {
-        LOG("%f", 1.f / deltaTime);
     }
 }

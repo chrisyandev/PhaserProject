@@ -9,6 +9,7 @@ namespace ph
     public:
         static AssetManager& get();
         TSharedPtr<sf::Texture> loadTexture(const std::string& path);
+        void cleanUp();
 
     protected:
         AssetManager();

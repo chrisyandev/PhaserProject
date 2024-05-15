@@ -19,7 +19,7 @@ namespace ph
         TWeakPtr<WorldType> loadWorld()
         {
             TSharedPtr<WorldType> newWorld{ new WorldType{this} };
-            currentWorld = newWorld;
+            m_currentWorld = newWorld;
             return newWorld;
         }
 
@@ -31,6 +31,8 @@ namespace ph
         sf::RenderWindow m_window;
         float m_targetFrameRate;
         sf::Clock m_tickClock;
-        TSharedPtr<World> currentWorld;
+        TSharedPtr<World> m_currentWorld;
+        sf::Clock m_cleanUpClock;
+        float m_cleanUpInterval;
     };
 }

@@ -32,6 +32,22 @@ namespace ph
         return TSharedPtr<sf::Texture>{ nullptr };
     }
 
+    void AssetManager::cleanUp()
+    {
+        for (auto itr = m_loadedTextureMap.begin(); itr != m_loadedTextureMap.end();)
+        {
+            if (itr->second.unique())
+            {
+                LOG("erasing texture: %s", itr->first.c_str());
+                itr = m_loadedTextureMap.erase(itr);
+            }
+            else
+            {
+                ++itr;
+            }
+        }
+    }
+
     AssetManager::AssetManager()
     {
     }

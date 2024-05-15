@@ -29,7 +29,6 @@ namespace ph
 
     void Actor::beginPlay()
     {
-        LOG("Actor Begin Play");
     }
 
     void Actor::tickInternal(float deltaTime)
@@ -42,7 +41,6 @@ namespace ph
 
     void Actor::tick(float deltaTime)
     {
-        LOG("Actor Tick");
     }
 
     void Actor::setTexture(const std::string& texturePath)

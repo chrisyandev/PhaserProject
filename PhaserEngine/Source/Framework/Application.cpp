@@ -1,6 +1,7 @@
 #include "Framework/Application.h"
 #include "Framework/Core.h"
 #include "Framework/World.h"
+#include "Framework/AssetManager.h"
 
 namespace ph
 {
@@ -11,7 +12,9 @@ namespace ph
         : m_window{ sf::VideoMode(windowWidth, windowHeight), title, style }
         , m_targetFrameRate{ 60.f }
         , m_tickClock{}
-        , currentWorld{ nullptr }
+        , m_currentWorld{ nullptr }
+        , m_cleanUpClock{}
+        , m_cleanUpInterval{ 2.f }
     {
     }
 
@@ -45,10 +48,16 @@ namespace ph
     {
         tick(deltaTime);
 
-        if (currentWorld)
+        if (m_currentWorld)
         {
-            currentWorld->beginPlayInternal();
-            currentWorld->tickInternal(deltaTime);
+            m_currentWorld->beginPlayInternal();
+            m_currentWorld->tickInternal(deltaTime);
+        }
+
+        if (m_cleanUpClock.getElapsedTime().asSeconds() >= m_cleanUpInterval)
+        {
+            m_cleanUpClock.restart();
+            AssetManager::get().cleanUp();
         }
     }
 
@@ -63,9 +72,9 @@ namespace ph
 
     void Application::render()
     {
-        if (currentWorld)
+        if (m_currentWorld)
         {
-            currentWorld->render(m_window);
+            m_currentWorld->render(m_window);
         }
     }
 
