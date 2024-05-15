@@ -5,6 +5,7 @@
 namespace ph
 {
     class Actor;
+    class PlayerSpaceship;
 
     class GameApplication : public Application
     {
@@ -14,6 +15,6 @@ namespace ph
 
     private:
         float m_counter;
-        TWeakPtr<Actor> m_actorToDestroy;
+        TWeakPtr<PlayerSpaceship> m_testPlayerSpaceship;
     };
 }

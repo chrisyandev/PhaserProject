@@ -10,6 +10,7 @@ namespace ph
         static AssetManager& get();
         TSharedPtr<sf::Texture> loadTexture(const std::string& path);
         void cleanUp();
+        void setRootDirectory(const std::string& directory);
 
     protected:
         AssetManager();
@@ -17,5 +18,6 @@ namespace ph
     private:
         static TUniquePtr<AssetManager> s_assetManager;
         TMap<std::string, TSharedPtr<sf::Texture>> m_loadedTextureMap;
+        std::string m_rootDirectory;
     };
 }

@@ -23,7 +23,7 @@ namespace ph
         }
 
         TSharedPtr<sf::Texture> newTexture{ new sf::Texture };
-        if (newTexture->loadFromFile(path))
+        if (newTexture->loadFromFile(m_rootDirectory + path))
         {
             m_loadedTextureMap.insert({ path, newTexture });
             return newTexture;
@@ -46,6 +46,11 @@ namespace ph
                 ++itr;
             }
         }
+    }
+
+    void AssetManager::setRootDirectory(const std::string& directory)
+    {
+        m_rootDirectory = directory;
     }
 
     AssetManager::AssetManager()

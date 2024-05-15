@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-std::string GetResourceDir()
+std::string getResourceDirectory()
 {
 #ifdef NDEBUG
     return "Assets/";
