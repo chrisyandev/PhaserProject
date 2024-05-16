@@ -2,6 +2,7 @@
 #include "Framework/Core.h"
 #include "Framework/AssetManager.h"
 #include "Framework/MathUtility.h"
+#include "Framework/World.h"
 
 namespace ph
 {
@@ -111,6 +112,11 @@ namespace ph
     sf::Vector2f Actor::getActorRightVector()
     {
         return rotationToVector(getActorRotation() + 90.f);
+    }
+
+    sf::Vector2u Actor::getWindowSize() const
+    {
+        return m_owningWorld->getWindowSize();
     }
 
     void Actor::centerPivot()

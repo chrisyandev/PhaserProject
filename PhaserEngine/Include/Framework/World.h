@@ -15,6 +15,7 @@ namespace ph
         void beginPlayInternal();
         void tickInternal(float deltaTime);
         void render(sf::RenderWindow& window);
+        sf::Vector2u getWindowSize() const;
 
         template<typename ActorType>
         TWeakPtr<ActorType> spawnActor()

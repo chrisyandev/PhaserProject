@@ -44,6 +44,11 @@ namespace ph
         }
     }
 
+    sf::Vector2u Application::getWindowSize() const
+    {
+        return m_window.getSize();
+    }
+
     void Application::tickInternal(float deltaTime)
     {
         tick(deltaTime);

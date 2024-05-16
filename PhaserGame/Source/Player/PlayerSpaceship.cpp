@@ -16,6 +16,7 @@ namespace ph
         Spaceship::tick(deltaTime);
 
         handleInput(deltaTime);
+        clampActorLocation();
     }
 
     void PlayerSpaceship::handleInput(float deltaTime)
@@ -39,12 +40,23 @@ namespace ph
             m_movementInput.y += 1.f;
         }
 
-        normalizeInput();
+        normalizeMovement();
         setVelocity(m_movementInput * m_movementSpeed * deltaTime);
     }
 
-    void PlayerSpaceship::normalizeInput()
+    void PlayerSpaceship::normalizeMovement()
     {
         normalize(m_movementInput);
+    }
+
+    void PlayerSpaceship::clampActorLocation()
+    {
+        sf::Vector2f actorLocation = getActorLocation();
+        sf::Vector2u windowSize = getWindowSize();
+        actorLocation.x = actorLocation.x < 0.f ? 0.f : actorLocation.x;
+        actorLocation.x = actorLocation.x > windowSize.x ? windowSize.x : actorLocation.x;
+        actorLocation.y = actorLocation.y < 0.f ? 0.f : actorLocation.y;
+        actorLocation.y = actorLocation.y > windowSize.y ? windowSize.y : actorLocation.y;
+        setActorLocation(actorLocation);
     }
 }

@@ -13,7 +13,8 @@ namespace ph
 
     private:
         void handleInput(float deltaTime);
-        void normalizeInput();
+        void normalizeMovement();
+        void clampActorLocation();
         sf::Vector2f m_movementInput;
         float m_movementSpeed;
     };
