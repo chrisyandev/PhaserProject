@@ -13,6 +13,7 @@ namespace ph
 
     private:
         void handleInput(float deltaTime);
+        void normalizeInput();
         sf::Vector2f m_movementInput;
         float m_movementSpeed;
     };

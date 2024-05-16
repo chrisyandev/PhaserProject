@@ -1,5 +1,6 @@
 #include "Player/PlayerSpaceship.h"
 #include "SFML/System.hpp"
+#include "Framework/MathUtility.h"
 
 namespace ph
 {
@@ -38,6 +39,12 @@ namespace ph
             m_movementInput.y += 1.f;
         }
 
+        normalizeInput();
         setVelocity(m_movementInput * m_movementSpeed * deltaTime);
+    }
+
+    void PlayerSpaceship::normalizeInput()
+    {
+        normalize(m_movementInput);
     }
 }
