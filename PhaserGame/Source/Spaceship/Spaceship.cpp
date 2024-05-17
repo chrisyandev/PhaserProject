@@ -19,4 +19,8 @@ namespace ph
     {
         m_velocity = newVelocity;
     }
+
+    void Spaceship::shoot()
+    {
+    }
 }

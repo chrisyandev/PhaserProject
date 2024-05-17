@@ -1,6 +1,7 @@
 #include "Player/PlayerSpaceship.h"
 #include "SFML/System.hpp"
 #include "Framework/MathUtility.h"
+#include "Weapon/BulletShooter.h"
 
 namespace ph
 {
@@ -8,6 +9,7 @@ namespace ph
         : Spaceship{ owningWorld, texturePath }
         , m_movementInput{}
         , m_movementSpeed{ 20000.f }
+        , m_bulletShooter{ new BulletShooter{ this, 0.5f } }
     {
     }
 
@@ -17,6 +19,16 @@ namespace ph
 
         handleInput(deltaTime);
         clampActorLocation();
+    }
+
+    void PlayerSpaceship::shoot()
+    {
+        Spaceship::shoot();
+
+        if (m_bulletShooter)
+        {
+            m_bulletShooter->shoot();
+        }
     }
 
     void PlayerSpaceship::handleInput(float deltaTime)
@@ -42,6 +54,11 @@ namespace ph
 
         normalizeMovement();
         setVelocity(m_movementInput * m_movementSpeed * deltaTime);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            shoot();
+        }
     }
 
     void PlayerSpaceship::normalizeMovement()

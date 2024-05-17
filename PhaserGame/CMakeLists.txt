@@ -9,6 +9,12 @@ add_executable(
 
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Player/PlayerSpaceship.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Player/PlayerSpaceship.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Weapon/Shooter.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Weapon/Shooter.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Weapon/BulletShooter.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Weapon/BulletShooter.cpp
 )
 
 target_include_directories(

@@ -10,6 +10,7 @@ namespace ph
         virtual void tick(float deltaTime) override;
         void setVelocity(const sf::Vector2f& newVelocity);
         sf::Vector2f getVelocity() const { return m_velocity; }
+        virtual void shoot();
 
     private:
         sf::Vector2f m_velocity;
