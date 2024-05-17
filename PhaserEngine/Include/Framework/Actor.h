@@ -27,12 +27,16 @@ namespace ph
         sf::Vector2f getActorForwardVector();
         sf::Vector2f getActorRightVector();
         sf::Vector2u getWindowSize() const;
+        World* getOwningWorld() const { return m_owningWorld; }
 
     private:
         void centerPivot();
+        void fixSpriteRotation();
         World* m_owningWorld;
         bool m_bBegunPlay;
         sf::Sprite m_sprite;
         TSharedPtr<sf::Texture> m_texture;
+        sf::Vector2f m_actorLocation;
+        float m_actorRotation;
     };
 }

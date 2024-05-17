@@ -8,7 +8,7 @@ namespace ph
     PlayerSpaceship::PlayerSpaceship(World* owningWorld, const std::string& texturePath)
         : Spaceship{ owningWorld, texturePath }
         , m_movementInput{}
-        , m_movementSpeed{ 20000.f }
+        , m_movementSpeed{ 500.f }
         , m_bulletShooter{ new BulletShooter{ this, 0.5f } }
     {
     }
@@ -53,7 +53,7 @@ namespace ph
         }
 
         normalizeMovement();
-        setVelocity(m_movementInput * m_movementSpeed * deltaTime);
+        setVelocity(m_movementInput * m_movementSpeed);
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {

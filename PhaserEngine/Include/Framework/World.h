@@ -17,10 +17,10 @@ namespace ph
         void render(sf::RenderWindow& window);
         sf::Vector2u getWindowSize() const;
 
-        template<typename ActorType>
-        TWeakPtr<ActorType> spawnActor()
+        template<typename ActorType, typename... Ts>
+        TWeakPtr<ActorType> spawnActor(Ts... args)
         {
-            TSharedPtr<ActorType> newActor{ new ActorType{this} };
+            TSharedPtr<ActorType> newActor{ new ActorType{ this, args... } };
             m_pendingActors.push_back(newActor);
             return newActor;
         }

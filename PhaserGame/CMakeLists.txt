@@ -15,6 +15,9 @@ add_executable(
 
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Weapon/BulletShooter.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Weapon/BulletShooter.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Weapon/Bullet.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Weapon/Bullet.cpp
 )
 
 target_include_directories(

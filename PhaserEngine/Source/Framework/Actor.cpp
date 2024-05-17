@@ -11,6 +11,8 @@ namespace ph
         , m_bBegunPlay{ false }
         , m_sprite{}
         , m_texture{}
+        , m_actorLocation{}
+        , m_actorRotation{}
     {
         setTexture(texturePath);
     }
@@ -62,6 +64,7 @@ namespace ph
             });
 
         centerPivot();
+        fixSpriteRotation();
     }
 
     void Actor::render(sf::RenderWindow& window)
@@ -76,22 +79,26 @@ namespace ph
 
     sf::Vector2f Actor::getActorLocation() const
     {
-        return m_sprite.getPosition();
+        return m_actorLocation;
     }
 
     float Actor::getActorRotation() const
     {
-        return m_sprite.getRotation();
+        return m_actorRotation;
     }
 
     void Actor::setActorLocation(const sf::Vector2f& newLocation)
     {
-        m_sprite.setPosition(newLocation);
+        sf::Vector2f locationDelta = newLocation - m_actorLocation;
+        m_sprite.move(locationDelta); // sprite transform is relative to actor
+        m_actorLocation = newLocation;
     }
 
     void Actor::setActorRotation(float newRotation)
     {
-        m_sprite.setRotation(newRotation);
+        float rotationDelta = newRotation - m_actorRotation;
+        m_sprite.rotate(rotationDelta); // sprite transform is relative to actor
+        m_actorRotation = newRotation;
     }
 
     void Actor::addActorLocationOffset(const sf::Vector2f& offsetAmount)
@@ -121,7 +128,12 @@ namespace ph
 
     void Actor::centerPivot()
     {
-        sf::FloatRect bounds = m_sprite.getGlobalBounds();
+        sf::FloatRect bounds = m_sprite.getLocalBounds(); // using globalBounds causes deviation when setting texture multiple times
         m_sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    }
+
+    void Actor::fixSpriteRotation()
+    {
+        m_sprite.setRotation(m_actorRotation + 90.f); // compensate for image pointing up instead of right
     }
 }

@@ -10,7 +10,7 @@ namespace ph
         void shoot();
         virtual bool canShoot() const = 0;
         virtual bool isOnCooldown() const = 0;
-        Actor* getOwner() const { return m_owningActor; }
+        Actor* getOwningActor() const { return m_owningActor; }
 
     protected:
         Shooter(Actor* owningActor);

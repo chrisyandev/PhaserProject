@@ -1,5 +1,7 @@
 #include "Weapon/BulletShooter.h"
 #include "Framework/Core.h"
+#include "Framework/World.h"
+#include "Weapon/Bullet.h"
 
 namespace ph
 {
@@ -35,6 +37,9 @@ namespace ph
         m_bFiredFirstShot = true;
         m_cooldownClock.restart();
 
-        LOG("%s", "SHOT FIRED");
+        TWeakPtr<Bullet> newBullet = getOwningActor()->getOwningWorld()
+            ->spawnActor<Bullet>(getOwningActor(), "PNG/Lasers/laserBlue01.png");
+        newBullet.lock()->setActorLocation(getOwningActor()->getActorLocation());
+        newBullet.lock()->setActorRotation(getOwningActor()->getActorRotation());
     }
 }
