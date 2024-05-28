@@ -19,6 +19,11 @@ namespace ph
         Actor::tick(deltaTime);
         
         move(deltaTime);
+
+        if (isActorOutOfWindowBounds())
+        {
+            destroy();
+        }
     }
 
     void Bullet::setSpeed(float newSpeed)

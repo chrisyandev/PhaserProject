@@ -38,15 +38,8 @@ namespace ph
 
         for (auto itr = m_actors.begin(); itr != m_actors.end();)
         {
-            if (itr->get()->isPendingDestroy())
-            {
-                itr = m_actors.erase(itr);
-            }
-            else
-            {
-                itr->get()->tickInternal(deltaTime);
-                ++itr;
-            }
+            itr->get()->tickInternal(deltaTime);
+            ++itr;
         }
 
         tick(deltaTime);
@@ -60,9 +53,24 @@ namespace ph
         }
     }
 
-    sf::Vector2u World::getWindowSize() const
+    sf::Vector2f World::getWindowSize() const
     {
         return m_owningApp->getWindowSize();
+    }
+
+    void World::cleanUp()
+    {
+        for (auto itr = m_actors.begin(); itr != m_actors.end();)
+        {
+            if (itr->get()->isPendingDestroy())
+            {
+                itr = m_actors.erase(itr);
+            }
+            else
+            {
+                ++itr;
+            }
+        }
     }
 
     void World::beginPlay()

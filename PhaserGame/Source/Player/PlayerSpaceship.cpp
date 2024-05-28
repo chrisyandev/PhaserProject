@@ -69,7 +69,7 @@ namespace ph
     void PlayerSpaceship::clampActorLocation()
     {
         sf::Vector2f actorLocation = getActorLocation();
-        sf::Vector2u windowSize = getWindowSize();
+        sf::Vector2f windowSize = getWindowSize();
         actorLocation.x = actorLocation.x < 0.f ? 0.f : actorLocation.x;
         actorLocation.x = actorLocation.x > windowSize.x ? windowSize.x : actorLocation.x;
         actorLocation.y = actorLocation.y < 0.f ? 0.f : actorLocation.y;

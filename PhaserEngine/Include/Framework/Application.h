@@ -14,7 +14,7 @@ namespace ph
                     const std::string& title,
                     sf::Uint32 style);
         void run();
-        sf::Vector2u getWindowSize() const;
+        sf::Vector2f getWindowSize() const;
 
         template<typename WorldType>
         TWeakPtr<WorldType> loadWorld()

@@ -121,14 +121,45 @@ namespace ph
         return rotationToVector(getActorRotation() + 90.f);
     }
 
-    sf::Vector2u Actor::getWindowSize() const
+    sf::Vector2f Actor::getWindowSize() const
     {
         return m_owningWorld->getWindowSize();
     }
 
+    sf::FloatRect Actor::getActorGlobalBounds() const
+    {
+        return m_sprite.getGlobalBounds();
+    }
+
+    bool Actor::isActorOutOfWindowBounds() const
+    {
+        sf::Vector2f windowSize = getOwningWorld()->getWindowSize();
+        sf::FloatRect actorBounds = getActorGlobalBounds();
+        sf::Vector2f actorLocation = getActorLocation();
+
+        if (actorLocation.x + (actorBounds.width / 2) < 0) // if completely outside of window left side
+        {
+            return true;
+        }
+        if (actorLocation.x - (actorBounds.width / 2) > windowSize.x) // if completely outside of window right side
+        {
+            return true;
+        }
+        if (actorLocation.y + (actorBounds.height / 2) < 0) // if completely outside of window top side
+        {
+            return true;
+        }
+        if (actorLocation.y - (actorBounds.height / 2) > windowSize.y) // if completely outside of window bottom side
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     void Actor::centerPivot()
     {
-        sf::FloatRect bounds = m_sprite.getLocalBounds(); // using globalBounds causes deviation when setting texture multiple times
+        sf::FloatRect bounds = m_sprite.getLocalBounds(); // using globalBounds causes deviation when setTexture is called multiple times because the sprite gets rotated
         m_sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
 

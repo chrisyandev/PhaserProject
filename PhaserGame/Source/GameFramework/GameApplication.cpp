@@ -23,7 +23,7 @@ namespace ph
 
         m_testPlayerSpaceship = newWorld.lock()->spawnActor<PlayerSpaceship>();
         m_testPlayerSpaceship.lock()->setTexture("PNG/playerShip2_orange.png");
-        m_testPlayerSpaceship.lock()->setActorLocation(0.5f * static_cast<sf::Vector2f>(getWindowSize()));
+        m_testPlayerSpaceship.lock()->setActorLocation(0.5f * getWindowSize());
         m_testPlayerSpaceship.lock()->setActorRotation(-90.f);
     }
 

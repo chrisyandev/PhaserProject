@@ -9,7 +9,7 @@ namespace ph
                              unsigned int windowHeight,
                              const std::string& title,
                              sf::Uint32 style)
-        : m_window{ sf::VideoMode(windowWidth, windowHeight), title, style }
+        : m_window{ sf::VideoMode{ windowWidth, windowHeight }, title, style }
         , m_targetFrameRate{ 60.f }
         , m_tickClock{}
         , m_currentWorld{ nullptr }
@@ -44,9 +44,9 @@ namespace ph
         }
     }
 
-    sf::Vector2u Application::getWindowSize() const
+    sf::Vector2f Application::getWindowSize() const
     {
-        return m_window.getSize();
+        return static_cast<sf::Vector2f>(m_window.getSize());
     }
 
     void Application::tickInternal(float deltaTime)
@@ -63,6 +63,10 @@ namespace ph
         {
             m_cleanUpClock.restart();
             AssetManager::get().cleanUp();
+            if (m_currentWorld)
+            {
+                m_currentWorld->cleanUp();
+            }
         }
     }
 

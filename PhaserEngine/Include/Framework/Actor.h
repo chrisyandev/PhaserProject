@@ -26,8 +26,10 @@ namespace ph
         void addActorRotationOffset(float offsetAmount);
         sf::Vector2f getActorForwardVector();
         sf::Vector2f getActorRightVector();
-        sf::Vector2u getWindowSize() const;
+        sf::Vector2f getWindowSize() const;
         World* getOwningWorld() const { return m_owningWorld; }
+        sf::FloatRect getActorGlobalBounds() const;
+        bool isActorOutOfWindowBounds() const;
 
     private:
         void centerPivot();
