@@ -8,6 +8,13 @@ namespace ph
     {
     }
 
+    void Spaceship::beginPlay()
+    {
+        Actor::beginPlay();
+
+        setPhysicsEnabled(true);
+    }
+
     void Spaceship::tick(float deltaTime)
     {
         Actor::tick(deltaTime);

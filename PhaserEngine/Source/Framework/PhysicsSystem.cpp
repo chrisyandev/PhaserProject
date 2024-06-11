@@ -53,6 +53,10 @@ namespace ph
         return body;
     }
 
+    void PhysicsSystem::removePhysicsBody(b2Body* body)
+    {
+    }
+
     PhysicsSystem::PhysicsSystem()
         : m_physicsWorld{ b2Vec2_zero }
         , m_physicsScale{ 0.01f }

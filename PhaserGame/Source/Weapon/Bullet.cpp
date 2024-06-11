@@ -14,6 +14,13 @@ namespace ph
     {
     }
 
+    void Bullet::beginPlay()
+    {
+        Actor::beginPlay();
+
+        setPhysicsEnabled(true);
+    }
+
     void Bullet::tick(float deltaTime)
     {
         Actor::tick(deltaTime);

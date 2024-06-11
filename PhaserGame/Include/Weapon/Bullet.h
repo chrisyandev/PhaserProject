@@ -11,6 +11,7 @@ namespace ph
                const std::string& texturePath,
                float speed = 1000.f,
                float damage = 20.f);
+        virtual void beginPlay() override;
         virtual void tick(float deltaTime) override;
         void setSpeed(float newSpeed);
         void setDamage(float newDamage);

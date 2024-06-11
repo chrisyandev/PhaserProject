@@ -12,6 +12,7 @@ namespace ph
         static PhysicsSystem& get();
         void step(float deltaTime);
         b2Body* addPhysicsBody(Actor* actor);
+        void removePhysicsBody(b2Body* body);
         float getPhysicsScale() const { return m_physicsScale; }
 
     protected:

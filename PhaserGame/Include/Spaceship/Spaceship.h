@@ -7,6 +7,7 @@ namespace ph
     {
     public:
         Spaceship(World* owningWorld, const std::string& texturePath = "");
+        virtual void beginPlay() override;
         virtual void tick(float deltaTime) override;
         void setVelocity(const sf::Vector2f& newVelocity);
         sf::Vector2f getVelocity() const { return m_velocity; }

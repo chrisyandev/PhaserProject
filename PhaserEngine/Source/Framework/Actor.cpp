@@ -1,8 +1,10 @@
 #include "Framework/Actor.h"
+#include <box2D/b2_body.h>
 #include "Framework/Core.h"
 #include "Framework/AssetManager.h"
 #include "Framework/MathUtility.h"
 #include "Framework/World.h"
+#include "Framework/PhysicsSystem.h"
 
 namespace ph
 {
@@ -13,6 +15,8 @@ namespace ph
         , m_texture{}
         , m_actorLocation{}
         , m_actorRotation{}
+        , m_physicsBody{ nullptr }
+        , m_bPhysicsEnabled { false }
     {
         setTexture(texturePath);
     }
@@ -155,6 +159,47 @@ namespace ph
         }
 
         return false;
+    }
+
+    void Actor::setPhysicsEnabled(bool bEnabled)
+    {
+        m_bPhysicsEnabled = bEnabled;
+
+        if (m_bPhysicsEnabled)
+        {
+            initializePhysics();
+        }
+        else
+        {
+            uninitializePhysics();
+        }
+    }
+
+    void Actor::initializePhysics()
+    {
+        if (!m_physicsBody)
+        {
+            m_physicsBody = PhysicsSystem::get().addPhysicsBody(this);
+        }
+    }
+
+    void Actor::uninitializePhysics()
+    {
+        if (m_physicsBody)
+        {
+            PhysicsSystem::get().removePhysicsBody(m_physicsBody);
+        }
+    }
+
+    void Actor::updatePhysicsBodyTransform()
+    {
+        if (m_physicsBody)
+        {
+            float physicsScale = PhysicsSystem::get().getPhysicsScale();
+            b2Vec2 position{ getActorLocation().x * physicsScale, getActorLocation().y * physicsScale};
+            float rotation = degreesToRadians(getActorRotation());
+            m_physicsBody->SetTransform(position, rotation);
+        }
     }
 
     void Actor::centerPivot()

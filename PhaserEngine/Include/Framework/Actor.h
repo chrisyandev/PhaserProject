@@ -3,6 +3,8 @@
 #include "Framework/Core.h"
 #include "Framework/Object.h"
 
+class b2Body;
+
 namespace ph
 {
     class World;
@@ -30,8 +32,12 @@ namespace ph
         World* getOwningWorld() const { return m_owningWorld; }
         sf::FloatRect getActorGlobalBounds() const;
         bool isActorOutOfWindowBounds() const;
+        void setPhysicsEnabled(bool bEnabled);
 
     private:
+        void initializePhysics();
+        void uninitializePhysics();
+        void updatePhysicsBodyTransform();
         void centerPivot();
         void fixSpriteRotation();
         World* m_owningWorld;
@@ -40,5 +46,7 @@ namespace ph
         TSharedPtr<sf::Texture> m_texture;
         sf::Vector2f m_actorLocation;
         float m_actorRotation;
+        b2Body* m_physicsBody;
+        bool m_bPhysicsEnabled;
     };
 }
