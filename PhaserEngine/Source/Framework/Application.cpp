@@ -2,6 +2,7 @@
 #include "Framework/Core.h"
 #include "Framework/World.h"
 #include "Framework/AssetManager.h"
+#include "Framework/PhysicsSystem.h"
 
 namespace ph
 {
@@ -58,6 +59,8 @@ namespace ph
             m_currentWorld->beginPlayInternal();
             m_currentWorld->tickInternal(deltaTime);
         }
+
+        PhysicsSystem::get().step(deltaTime);
 
         if (m_cleanUpClock.getElapsedTime().asSeconds() >= m_cleanUpInterval)
         {
