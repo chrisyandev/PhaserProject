@@ -3,6 +3,7 @@
 #include "Framework/AssetManager.h"
 #include "Framework/World.h"
 #include "Framework/Actor.h"
+#include "Spaceship/Spaceship.h"
 #include "Player/PlayerSpaceship.h"
 #include "Framework/MathUtility.h"
 
@@ -19,12 +20,15 @@ namespace ph
         AssetManager::get().setRootDirectory(getResourceDirectory());
 
         TWeakPtr<World> newWorld = loadWorld<World>();
-        newWorld.lock()->spawnActor<Actor>();
 
         m_testPlayerSpaceship = newWorld.lock()->spawnActor<PlayerSpaceship>();
         m_testPlayerSpaceship.lock()->setTexture("PNG/playerShip2_orange.png");
         m_testPlayerSpaceship.lock()->setActorLocation(0.5f * getWindowSize());
         m_testPlayerSpaceship.lock()->setActorRotation(-90.f);
+
+        TWeakPtr<Spaceship> testSpaceship = newWorld.lock()->spawnActor<Spaceship>();
+        testSpaceship.lock()->setTexture("PNG/playerShip2_green.png");
+        testSpaceship.lock()->setActorLocation(sf::Vector2f{ 100.f, 50.f });
     }
 
     void GameApplication::tick(float deltaTime)

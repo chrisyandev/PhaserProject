@@ -1,6 +1,7 @@
 #pragma once
 #include <box2d/b2_world.h>
 #include "Framework/Core.h"
+#include "Framework/PhysicsContactListener.h"
 
 namespace ph
 {
@@ -24,5 +25,6 @@ namespace ph
         float m_physicsScale;
         int m_velocityIterations;
         int m_positionIterations;
+        PhysicsContactListener m_contactListener;
     };
 }

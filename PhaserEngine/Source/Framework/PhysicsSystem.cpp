@@ -60,8 +60,11 @@ namespace ph
     PhysicsSystem::PhysicsSystem()
         : m_physicsWorld{ b2Vec2_zero }
         , m_physicsScale{ 0.01f }
-        , m_velocityIterations{ 0 }
-        , m_positionIterations{ 0 }
+        , m_velocityIterations{ 8 }
+        , m_positionIterations{ 3 }
+        , m_contactListener{}
     {
+        m_physicsWorld.SetContactListener(&m_contactListener);
+        m_physicsWorld.SetAllowSleeping(false);
     }
 }

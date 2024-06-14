@@ -96,6 +96,8 @@ namespace ph
         sf::Vector2f locationDelta = newLocation - m_actorLocation;
         m_sprite.move(locationDelta); // sprite transform is relative to actor
         m_actorLocation = newLocation;
+
+        updatePhysicsBodyTransform();
     }
 
     void Actor::setActorRotation(float newRotation)
@@ -103,6 +105,8 @@ namespace ph
         float rotationDelta = newRotation - m_actorRotation;
         m_sprite.rotate(rotationDelta); // sprite transform is relative to actor
         m_actorRotation = newRotation;
+
+        updatePhysicsBodyTransform();
     }
 
     void Actor::addActorLocationOffset(const sf::Vector2f& offsetAmount)
@@ -173,6 +177,16 @@ namespace ph
         {
             uninitializePhysics();
         }
+    }
+
+    void Actor::onActorBeginOverlap(Actor* otherActor)
+    {
+        LOG("Begin Overlap");
+    }
+
+    void Actor::onActorEndOverlap(Actor* otherActor)
+    {
+        LOG("End Overlap");
     }
 
     void Actor::initializePhysics()

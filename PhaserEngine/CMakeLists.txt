@@ -16,6 +16,9 @@ add_library(
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/PhysicsSystem.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/PhysicsSystem.cpp
 
+	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/PhysicsContactListener.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/PhysicsContactListener.cpp
+
 	${CMAKE_CURRENT_SOURCE_DIR}/Include/Framework/AssetManager.h
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Framework/AssetManager.cpp
 

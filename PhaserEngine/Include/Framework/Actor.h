@@ -33,6 +33,8 @@ namespace ph
         sf::FloatRect getActorGlobalBounds() const;
         bool isActorOutOfWindowBounds() const;
         void setPhysicsEnabled(bool bEnabled);
+        virtual void onActorBeginOverlap(Actor* otherActor);
+        virtual void onActorEndOverlap(Actor* otherActor);
 
     private:
         void initializePhysics();
