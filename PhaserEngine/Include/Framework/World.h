@@ -22,7 +22,7 @@ namespace ph
         TWeakPtr<ActorType> spawnActor(Ts... args)
         {
             TSharedPtr<ActorType> newActor{ new ActorType{ this, args... } };
-            m_pendingActors.push_back(newActor);
+            m_pendingActorsToAdd.push_back(newActor);
             return newActor;
         }
 
@@ -32,6 +32,6 @@ namespace ph
         Application* m_owningApp;
         bool m_bBegunPlay;
         TArray<TSharedPtr<Actor>> m_actors;
-        TArray<TSharedPtr<Actor>> m_pendingActors;
+        TArray<TSharedPtr<Actor>> m_pendingActorsToAdd;
     };
 }

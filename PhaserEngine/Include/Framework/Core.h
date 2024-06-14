@@ -3,6 +3,7 @@
 #include <memory>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace ph
 {
@@ -23,6 +24,9 @@ namespace ph
 
     template<typename keyType, typename valType, typename hasher = std::hash<keyType>>
     using TMap = std::unordered_map<keyType, valType, hasher>;
+
+    template<typename T>
+    using TSet = std::unordered_set<T>;
 
 #define LOG(format, ...) printf(format "\n", ##__VA_ARGS__)
 }

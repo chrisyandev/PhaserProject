@@ -16,6 +16,7 @@ namespace ph
 {
     GameApplication::GameApplication()
         : Application{ 980, 600, "Phaser", sf::Style::Titlebar | sf::Style::Close }
+        , m_counter{ 0.f }
     {
         AssetManager::get().setRootDirectory(getResourceDirectory());
 
@@ -33,5 +34,13 @@ namespace ph
 
     void GameApplication::tick(float deltaTime)
     {
+        m_counter += deltaTime;
+        if (m_counter > 5.f)
+        {
+            if (!m_testPlayerSpaceship.expired())
+            {
+                m_testPlayerSpaceship.lock()->destroy();
+            }
+        }
     }
 }

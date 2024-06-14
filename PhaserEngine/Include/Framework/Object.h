@@ -7,7 +7,7 @@ namespace ph
     public:
         Object();
         virtual ~Object();
-        void destroy();
+        virtual void destroy();
         bool isPendingDestroy() const { return m_bPendingDestroy; }
 
     private:

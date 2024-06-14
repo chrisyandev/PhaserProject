@@ -189,6 +189,13 @@ namespace ph
         LOG("End Overlap");
     }
 
+    void Actor::destroy()
+    {
+        uninitializePhysics();
+
+        Object::destroy();
+    }
+
     void Actor::initializePhysics()
     {
         if (!m_physicsBody)
@@ -202,6 +209,7 @@ namespace ph
         if (m_physicsBody)
         {
             PhysicsSystem::get().removePhysicsBody(m_physicsBody);
+            m_physicsBody = nullptr;
         }
     }
 

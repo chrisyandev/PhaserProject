@@ -15,6 +15,7 @@ namespace ph
         b2Body* addPhysicsBody(Actor* actor);
         void removePhysicsBody(b2Body* body);
         float getPhysicsScale() const { return m_physicsScale; }
+        static void cleanup();
 
     protected:
         PhysicsSystem();
@@ -26,5 +27,6 @@ namespace ph
         int m_velocityIterations;
         int m_positionIterations;
         PhysicsContactListener m_contactListener;
+        TSet<b2Body*> m_pendingPhysicsBodiesToRemove;
     };
 }

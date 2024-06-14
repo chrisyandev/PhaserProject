@@ -21,6 +21,12 @@ namespace ph
 
     void PhysicsSystem::step(float deltaTime)
     {
+        for (auto listener : m_pendingPhysicsBodiesToRemove)
+        {
+            m_physicsWorld.DestroyBody(listener);
+        }
+        m_pendingPhysicsBodiesToRemove.clear();
+
         m_physicsWorld.Step(deltaTime, m_velocityIterations, m_positionIterations);
     }
 
@@ -55,6 +61,12 @@ namespace ph
 
     void PhysicsSystem::removePhysicsBody(b2Body* body)
     {
+        m_pendingPhysicsBodiesToRemove.insert(body);
+    }
+
+    void PhysicsSystem::cleanup()
+    {
+        s_physicsSystem = std::move(TUniquePtr<PhysicsSystem>{new PhysicsSystem});
     }
 
     PhysicsSystem::PhysicsSystem()
@@ -63,6 +75,7 @@ namespace ph
         , m_velocityIterations{ 8 }
         , m_positionIterations{ 3 }
         , m_contactListener{}
+        , m_pendingPhysicsBodiesToRemove{}
     {
         m_physicsWorld.SetContactListener(&m_contactListener);
         m_physicsWorld.SetAllowSleeping(false);

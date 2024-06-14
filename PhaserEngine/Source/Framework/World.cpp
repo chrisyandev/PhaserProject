@@ -9,7 +9,7 @@ namespace ph
         : m_owningApp{ owningApp }
         , m_bBegunPlay(false)
         , m_actors{}
-        , m_pendingActors{}
+        , m_pendingActorsToAdd{}
     {
     }
 
@@ -28,13 +28,12 @@ namespace ph
 
     void World::tickInternal(float deltaTime)
     {
-        for (TSharedPtr<Actor> actor : m_pendingActors)
+        for (TSharedPtr<Actor> actor : m_pendingActorsToAdd)
         {
             m_actors.push_back(actor);
             actor->beginPlayInternal();
         }
-
-        m_pendingActors.clear();
+        m_pendingActorsToAdd.clear();
 
         for (auto itr = m_actors.begin(); itr != m_actors.end();)
         {

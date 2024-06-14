@@ -35,6 +35,7 @@ namespace ph
         void setPhysicsEnabled(bool bEnabled);
         virtual void onActorBeginOverlap(Actor* otherActor);
         virtual void onActorEndOverlap(Actor* otherActor);
+        virtual void destroy() override;
 
     private:
         void initializePhysics();
